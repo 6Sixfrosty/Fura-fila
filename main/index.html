@@ -131,19 +131,46 @@
             </div>
         </section>
 
-        <template id="ticket">
-            <a href="#" class="pedido-card">
-                <div class="pedido-main">
-                    <span class="pedido-id"></span>
-                    <span class="pedido-status"></span>
-                </div>
+<template id="ticket">
+    <div class="ticket-card">
+        <div class="ticket-header">
+            <span class="pedido-id">Pedido #047</span>
+            <span class="pedido-status status-pronto">Pronto para retirada</span>
+        </div>
 
-                <div class="pedido-info">
-                    <span class="pedido-total"></span>
-                    <i class="bi bi-chevron-right"></i>
-                </div>
-            </a>
-        </template>
+        <hr>
+
+        <div class="ticket-itens">
+            <div class="ticket-item">
+                <span class="ticket-nome">X-Burguer</span>
+                <span class="ticket-qty">x1</span>
+                <span class="ticket-valor">R$ 12,00</span>
+            </div>
+            <div class="ticket-item">
+                <span class="ticket-nome">Coxinha</span>
+                <span class="ticket-qty">x2</span>
+                <span class="ticket-valor">R$ 16,00</span>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="ticket-footer">
+            <span class="ticket-label">Total</span>
+            <span class="ticket-total">R$ 28,00</span>
+        </div>
+
+        <div class="ticket-pagamento mt-2">
+            <span class="ticket-label">Pagamento</span>
+            <span class="ticket-forma">Pix</span>
+        </div>
+
+        <div class="ticket-hora mt-1">
+            <span class="ticket-label">Horário</span>
+            <span class="ticket-time">14:32</span>
+        </div>
+    </div>
+</template>
     </main>
 
 
