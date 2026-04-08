@@ -1,0 +1,31 @@
+.page-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+.section-header {
+  text-align: center;
+  color: #ff8a00;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  margin-top: 14px;
+  margin-bottom: 10px;
+}
+
+hr {
+  width: 85%;
+  margin: 12px auto;
+  border: 0;
+  border-top: 1px solid #eba337;
+  margin-bottom: 12px;
+}
+
+.section-content {
+  min-height: 450px;
+  max-width: 450px;
+}
+
