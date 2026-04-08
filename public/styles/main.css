@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background: linear-gradient(180deg, #f5ad5a 0%, #fff3e0 100%);
+  font-family: Arial, sans-serif;
+}
+
+.login-page {
+  padding: 24px;
+  top: -100px;
+  position: absolute;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.login-subtitle {
+  color: #fff7ed;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.login-form {
+  background: #ffffff;
+  padding: 24px 20px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.form-label {
+  color: #7a4b16;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  height: 46px;
+  border: 1px solid #f1c27d;
+  border-radius: 12px;
+  font-size: 14px;
+  padding: 0 14px;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 0.2rem rgba(245, 158, 11, 0.18);
+}
+
+.btn-primary {
+  height: 46px;
+  border: 0;
+  border-radius: 12px;
+  background: #ff8a00;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #f57c00;
+}
+
+.register-link {
+  color: #7a4b16;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  bottom: -10px;
+}
+
+.register-link-button {
+  color: #ffffff;
+  font-weight: 700;
+  user-select: none;
+  margin-left: 4px;
+  font-size: 17px;
+  background-color: #f59e0b;
+  padding: 10px 16px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+.register-link-button:active{
+  transform: scale(0.93);
+  background-color: #d97706;
+}
+
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.boxing {
+    margin-bottom: 20px;
+}
