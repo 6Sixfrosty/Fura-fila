@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="./styles/main/nav-bar.css">
     <link rel="stylesheet" href="./styles/main/sections.css">
     <link rel="stylesheet" href="./styles/pages/cardapio.css">
+    <link rel="stylesheet" href="./styles/pages/carrinho.css">
+    <link rel="stylesheet" href="./styles/pages/two.css">
 </head>
 
 <body>
@@ -54,14 +56,15 @@
         <section id="cardapio" class="page-section">
             <div class="section-header">Cardápio</div>
             <hr>
-            <div class="section-content cart-content">
+            <div class="section-content cart-content overflow-y-auto">
                 <div class="table-responsive">
                     <table class="table cart-table align-middle mb-0">
                         <thead>
                             <tr>
                                 <th scope="col">Lanche</th>
                                 <th scope="col" class="text-center">Quantidade</th>
-                                <th scope="col" class="text-end">Valor</th>
+                                <th scope="col" class="text-center">Valor</th>
+                                <th scope="col" class="text-end">Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,29 +77,8 @@
                                         <button type="button" class="qty-btn">+</button>
                                     </div>
                                 </td>
-                                <td class="text-end">R$ 12,00</td>
-                            </tr>
-                            <tr>
-                                <td>Coxinha</td>
-                                <td class="text-center">
-                                    <div class="qty-control">
-                                        <button type="button" class="qty-btn">-</button>
-                                        <span class="qty-value">2</span>
-                                        <button type="button" class="qty-btn">+</button>
-                                    </div>
-                                </td>
-                                <td class="text-end">R$ 8,00</td>
-                            </tr>
-                            <tr>
-                                <td>Suco de Laranja</td>
-                                <td class="text-center">
-                                    <div class="qty-control">
-                                        <button type="button" class="qty-btn">-</button>
-                                        <span class="qty-value">1</span>
-                                        <button type="button" class="qty-btn">+</button>
-                                    </div>
-                                </td>
-                                <td class="text-end">R$ 5,00</td>
+                                <td class="text-center">R$ 12,00</td>
+                                <td class="text-end">12</td>
                             </tr>
                         </tbody>
                     </table>
@@ -107,21 +89,60 @@
         <section id="carrinho" class="page-section">
             <div class="section-header">Carrinho</div>
             <hr>
-            <div class="section-content">
-
+            <div class="section-content cart-section overflow-y-auto">
+                <div class="table-responsive">
+                    <table class="table cart-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Lanche</th>
+                                <th scope="col" class="text-center">Qtd</th>
+                                <th scope="col" class="text-end">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>X-Burguer</td>
+                                <td class="text-center">1</td>
+                                <td class="text-end">R$ 12,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
         <section id="pedidos" class="page-section">
             <div class="section-header">Pedidos</div>
             <hr>
-            <div class="section-content"></div>
+            <div class="section-content pedidos-content">
+                <div class="pedidos-list">
+                    <a href="#" class="pedido-card">
+                        <div class="pedido-main">
+                            <span class="pedido-id">Pedido #047</span>
+                            <span class="pedido-status">Pronto para retirada</span>
+                        </div>
+
+                        <div class="pedido-info">
+                            <span class="pedido-total">R$ 28,00</span>
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </section>
 
         <template id="ticket">
-            <div class="section-header">Pedidos</div>
-            <hr>
-            <div class="section-content"></div>
+            <a href="#" class="pedido-card">
+                <div class="pedido-main">
+                    <span class="pedido-id"></span>
+                    <span class="pedido-status"></span>
+                </div>
+
+                <div class="pedido-info">
+                    <span class="pedido-total"></span>
+                    <i class="bi bi-chevron-right"></i>
+                </div>
+            </a>
         </template>
     </main>
 
@@ -132,7 +153,7 @@
 
     <script>
         function sair() {
-                window.location.href = '../public/index.html';
+            window.location.href = '../public/index.html';
         }
     </script>
 </body>
