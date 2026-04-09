@@ -16,7 +16,7 @@ async function renderizarCardapio() {
                         </div>
                     </td>
                     <td class="text-center">R$ ${Number(item.valor).toFixed(2)}</td>
-                    <td class="text-end">R$ ${Number(item.valor).toFixed(2)}</td>
+                    <td class="text-end">R$ ${Number(item.quantidade_atual).toFixed(2)}</td>
                 </tr>
             `;
         });
