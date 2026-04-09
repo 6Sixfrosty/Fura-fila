@@ -1,3 +1,15 @@
+async function fetchPerfil() {
+    const res = await fetch(`${BASE_URL}/Perfil`, {
+        headers: authHeader()
+    });
+
+    if (!res.ok) {
+        throw new Error('Erro ao buscar perfil do usuário.');
+    }
+
+    return await res.json();
+}
+
 async function fetchCardapio() {
     const res = await fetch(`${BASE_URL}/Cardapio`, {
         headers: authHeader()
@@ -32,4 +44,23 @@ async function fetchPedidos() {
     }
 
     return await res.json();
+}
+
+async function adicionarAoCarrinho(id_cardapio, quantidade) {
+    const res = await fetch(`${BASE_URL}/Carrinho`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            ...authHeader()
+        },
+        body: JSON.stringify({ id_cardapio, quantidade })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data.error || 'Erro ao adicionar ao carrinho.');
+    }
+
+    return data;
 }

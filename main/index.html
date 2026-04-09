@@ -20,11 +20,10 @@
         <div class="container-fluid px-2">
             <div class="student-info text-center">
                 <div class="info-inline">
-                    <span class="info-label">Aluno:</span>
-                    <span class="info-value">João Silva</span>
+                    <span class="info-value" id="student-name">Carregando...</span>
                     <span class="info-separator">|</span>
                     <span class="info-label">Matrícula:</span>
-                    <span class="info-value">12345</span>
+                    <span class="info-value" id="student-matricula">Carregando...</span>
                 </div>
             </div>
         </div>
@@ -62,9 +61,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">Lanche</th>
-                                <th scope="col" class="text-center">Quantidade</th>
+                                <th scope="col" class="text-center">Disponível</th>
+                                <th scope="col" class="text-center">Qtd</th>
                                 <th scope="col" class="text-center">Valor</th>
                                 <th scope="col" class="text-end">Total</th>
+                                <th scope="col" class="text-center">Ação</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -83,12 +84,46 @@
                             <tr>
                                 <th scope="col">Lanche</th>
                                 <th scope="col" class="text-center">Qtd</th>
-                                <th scope="col" class="text-end">Valor</th>
+                                <th scope="col" class="text-center">Valor unit.</th>
+                                <th scope="col" class="text-end">Subtotal</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                 </div>
+
+                <template id="pagamento-template">
+                    <div class="pagamento-box mt-3">
+                        <div class="pagamento-header">
+                            <span class="pagamento-title">Pagamento</span>
+                        </div>
+
+                        <div class="pagamento-opcoes mt-3">
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="forma_pagamento" value="Dinheiro" checked>
+                                <span>Dinheiro</span>
+                            </label>
+
+                            <label class="pagamento-opcao">
+                                <input type="radio" name="forma_pagamento" value="Pix">
+                                <span>Pix</span>
+                            </label>
+                        </div>
+
+                        <div class="carrinho-resumo mt-3">
+                            <div class="resumo-linha">
+                                <span>Total geral</span>
+                                <strong id="total-geral-carrinho">R$ 0,00</strong>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary w-100 mt-3" id="btn-finalizar-pedido">
+                            Finalizar pedido
+                        </button>
+                    </div>
+                </template>
+
+                <div id="pagamento-container"></div>
             </div>
         </section>
 

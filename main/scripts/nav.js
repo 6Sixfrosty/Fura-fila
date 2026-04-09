@@ -1,6 +1,7 @@
 let paginaAtual = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
+    await renderizarPerfilAluno();
     configurarNavegacao();
     await trocarPagina('cardapio');
 });
