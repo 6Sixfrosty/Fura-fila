@@ -67,20 +67,7 @@
                                 <th scope="col" class="text-end">Total</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>X-Burguer</td>
-                                <td class="text-center">
-                                    <div class="qty-control">
-                                        <button type="button" class="qty-btn">-</button>
-                                        <span class="qty-value">1</span>
-                                        <button type="button" class="qty-btn">+</button>
-                                    </div>
-                                </td>
-                                <td class="text-center">R$ 12,00</td>
-                                <td class="text-end">12</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -99,13 +86,7 @@
                                 <th scope="col" class="text-end">Valor</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>X-Burguer</td>
-                                <td class="text-center">1</td>
-                                <td class="text-end">R$ 12,00</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -114,75 +95,51 @@
         <section id="pedidos" class="page-section">
             <div class="section-header">Pedidos</div>
             <hr>
+
             <div class="section-content pedidos-content">
-                <div class="pedidos-list">
-                    <a href="ticker.html" class="pedido-card">
+                <div class="pedidos-list"></div>
+
+                <div id="pedido-detalhe" class="pedido-detalhe mt-3" style="display: none;">
+                    <div class="pedido-card">
                         <div class="pedido-main">
-                            <span class="pedido-id">Pedido #047</span>
-                            <span class="pedido-status">Pronto para retirada</span>
+                            <span id="detalhe-id" class="pedido-id"></span>
+                            <span id="detalhe-status" class="pedido-status"></span>
                         </div>
 
                         <div class="pedido-info">
-                            <span class="pedido-total">R$ 28,00</span>
-                            <i class="bi bi-chevron-right"></i>
+                            <span id="detalhe-total" class="pedido-total"></span>
                         </div>
-                    </a>
+                    </div>
+
+                    <div class="pedido-extra mt-2 p-3">
+                        <p class="mb-1"><strong>Quantidade:</strong> <span id="detalhe-quantidade"></span></p>
+                        <p class="mb-0"><strong>Criado em:</strong> <span id="detalhe-data"></span></p>
+                    </div>
                 </div>
             </div>
         </section>
 
-<template id="ticket">
-    <div class="ticket-card">
-        <div class="ticket-header">
-            <span class="pedido-id">Pedido #047</span>
-            <span class="pedido-status status-pronto">Pronto para retirada</span>
-        </div>
+        <template id="ticket">
+            <a href="#" class="pedido-card">
+                <div class="pedido-main">
+                    <span class="pedido-id"></span>
+                    <span class="pedido-status"></span>
+                </div>
 
-        <hr>
-
-        <div class="ticket-itens">
-            <div class="ticket-item">
-                <span class="ticket-nome">X-Burguer</span>
-                <span class="ticket-qty">x1</span>
-                <span class="ticket-valor">R$ 12,00</span>
-            </div>
-            <div class="ticket-item">
-                <span class="ticket-nome">Coxinha</span>
-                <span class="ticket-qty">x2</span>
-                <span class="ticket-valor">R$ 16,00</span>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="ticket-footer">
-            <span class="ticket-label">Total</span>
-            <span class="ticket-total">R$ 28,00</span>
-        </div>
-
-        <div class="ticket-pagamento mt-2">
-            <span class="ticket-label">Pagamento</span>
-            <span class="ticket-forma">Pix</span>
-        </div>
-
-        <div class="ticket-hora mt-1">
-            <span class="ticket-label">Horário</span>
-            <span class="ticket-time">14:32</span>
-        </div>
-    </div>
-</template>
+                <div class="pedido-info">
+                    <span class="pedido-total"></span>
+                    <i class="bi bi-chevron-right"></i>
+                </div>
+            </a>
+        </template>
     </main>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./scripts/nav.js"></script>
 
-    <script>
-        function sair() {
-            window.location.href = '../public/index.html';
-        }
-    </script>
+    <script src="./scripts/auth.js"></script>
+    <script src="./scripts/api.js"></script>
+    <script src="./scripts/render.js"></script>
+    <script src="./scripts/nav.js"></script>
 </body>
 
 </html>
