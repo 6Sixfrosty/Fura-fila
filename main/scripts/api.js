@@ -64,3 +64,22 @@ async function adicionarAoCarrinho(id_cardapio, quantidade) {
 
     return data;
 }
+
+async function finalizarPedido(forma_pagamento) {
+    const res = await fetch(`${BASE_URL}/Pedidos/Finalizar`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            ...authHeader()
+        },
+        body: JSON.stringify({ forma_pagamento })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data.error || 'Erro ao finalizar pedido.');
+    }
+
+    return data;
+}

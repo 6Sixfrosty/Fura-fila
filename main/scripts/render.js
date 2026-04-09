@@ -20,10 +20,11 @@ async function renderizarPerfilAluno() {
 function mostrarDetalhePedido(pedido) {
     const detalhe = document.getElementById('pedido-detalhe');
 
-    document.getElementById('detalhe-id').textContent = `Pedido #${pedido.id_pedido}`;
-    document.getElementById('detalhe-status').textContent = 'Pedido selecionado';
+    document.getElementById('detalhe-id').textContent = pedido.grupo_pedido || `Pedido #${pedido.id_pedido}`;
+    document.getElementById('detalhe-status').textContent = pedido.status || 'Recebido';
     document.getElementById('detalhe-total').textContent = `R$ ${Number(pedido.valor_total).toFixed(2)}`;
     document.getElementById('detalhe-quantidade').textContent = pedido.quantidade;
+    document.getElementById('detalhe-pagamento').textContent = pedido.forma_pagamento || '-';
     document.getElementById('detalhe-data').textContent = pedido.criado_em;
 
     detalhe.style.display = 'block';
@@ -32,6 +33,42 @@ function mostrarDetalhePedido(pedido) {
 function obterFormaPagamentoSelecionada() {
     const selecionado = document.querySelector('input[name="forma_pagamento"]:checked');
     return selecionado ? selecionado.value : 'Dinheiro';
+}
+
+function configurarBotaoAdicionarCardapio() {
+    const btnAdicionar = document.getElementById('btn-adicionar-cardapio');
+    if (!btnAdicionar) return;
+
+    btnAdicionar.onclick = async () => {
+        try {
+            const linhas = document.querySelectorAll('#cardapio tbody tr');
+            const itensSelecionados = [];
+
+            linhas.forEach(tr => {
+                const quantidade = Number(tr.querySelector('.qty-value')?.textContent || 0);
+                const id_cardapio = Number(tr.dataset.idCardapio);
+
+                if (quantidade > 0) {
+                    itensSelecionados.push({ id_cardapio, quantidade });
+                }
+            });
+
+            if (itensSelecionados.length === 0) {
+                alert('Selecione ao menos um item do cardápio.');
+                return;
+            }
+
+            for (const item of itensSelecionados) {
+                await adicionarAoCarrinho(item.id_cardapio, item.quantidade);
+            }
+
+            alert('Itens adicionados ao carrinho com sucesso!');
+            await renderizarCardapio();
+            await renderizarCarrinho();
+        } catch (error) {
+            alert(error.message);
+        }
+    };
 }
 
 function renderizarBlocoPagamento(totalGeral) {
@@ -49,9 +86,22 @@ function renderizarBlocoPagamento(totalGeral) {
     const btnFinalizar = document.getElementById('btn-finalizar-pedido');
 
     btnFinalizar.addEventListener('click', async () => {
-        const forma_pagamento = obterFormaPagamentoSelecionada();
+        try {
+            const forma_pagamento = obterFormaPagamentoSelecionada();
 
-        alert(`Pagamento selecionado: ${forma_pagamento}\nTotal geral: R$ ${totalGeral.toFixed(2)}\n\nPróximo passo: ligar esse botão ao backend de finalizar pedido.`);
+            const resposta = await finalizarPedido(forma_pagamento);
+
+            alert(`Pedido finalizado com sucesso!\nCódigo: ${resposta.pedido.grupo_pedido}`);
+
+            await renderizarCarrinho();
+            await renderizarPedidos();
+
+            if (typeof trocarPagina === 'function') {
+                await trocarPagina('pedidos');
+            }
+        } catch (error) {
+            alert(error.message);
+        }
     });
 }
 
@@ -73,30 +123,24 @@ async function renderizarCardapio() {
                 <td class="text-center">
                     <div class="qty-control">
                         <button type="button" class="qty-btn btn-menor">-</button>
-                        <span class="qty-value">1</span>
+                        <span class="qty-value">0</span>
                         <button type="button" class="qty-btn btn-maior">+</button>
                     </div>
                 </td>
                 <td class="text-center">R$ ${Number(item.valor).toFixed(2)}</td>
-                <td class="text-end total-item">R$ ${Number(item.valor).toFixed(2)}</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-primary btn-adicionar">
-                        Adicionar
-                    </button>
-                </td>
+                <td class="text-end total-item">R$ 0.00</td>
             `;
 
             const btnMenor = tr.querySelector('.btn-menor');
             const btnMaior = tr.querySelector('.btn-maior');
             const qtyValue = tr.querySelector('.qty-value');
             const totalItem = tr.querySelector('.total-item');
-            const btnAdicionar = tr.querySelector('.btn-adicionar');
 
             function atualizarLinha(novaQuantidade) {
                 const estoque = Number(tr.dataset.estoque);
                 const valor = Number(tr.dataset.valor);
 
-                if (novaQuantidade < 1) novaQuantidade = 1;
+                if (novaQuantidade < 0) novaQuantidade = 0;
                 if (novaQuantidade > estoque) novaQuantidade = estoque;
 
                 qtyValue.textContent = novaQuantidade;
@@ -113,21 +157,10 @@ async function renderizarCardapio() {
                 atualizarLinha(atual + 1);
             });
 
-            btnAdicionar.addEventListener('click', async () => {
-                try {
-                    const quantidade = Number(qtyValue.textContent);
-                    const id_cardapio = Number(tr.dataset.idCardapio);
-
-                    await adicionarAoCarrinho(id_cardapio, quantidade);
-                    alert('Item adicionado ao carrinho com sucesso!');
-                    await renderizarCarrinho();
-                } catch (error) {
-                    alert(error.message);
-                }
-            });
-
             tbody.appendChild(tr);
         });
+
+        configurarBotaoAdicionarCardapio();
     } catch (error) {
         console.error('[renderizarCardapio]:', error.message);
     }
@@ -183,8 +216,8 @@ async function renderizarPedidos() {
             const clone = template.content.cloneNode(true);
             const card = clone.querySelector('.pedido-card');
 
-            clone.querySelector('.pedido-id').textContent = `Pedido #${pedido.id_pedido}`;
-            clone.querySelector('.pedido-status').textContent = `Criado em ${pedido.criado_em}`;
+            clone.querySelector('.pedido-id').textContent = pedido.grupo_pedido || `Pedido #${pedido.id_pedido}`;
+            clone.querySelector('.pedido-status').textContent = `${pedido.status} • ${pedido.forma_pagamento}`;
             clone.querySelector('.pedido-total').textContent = `R$ ${Number(pedido.valor_total).toFixed(2)}`;
 
             card.addEventListener('click', (e) => {

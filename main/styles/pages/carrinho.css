@@ -30,3 +30,67 @@
 .cart-table tbody tr:last-child td {
   border-bottom: 0;
 }
+
+.pagamento-box {
+  background: #fff8ef;
+  border: 1px solid #ffd199;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.04);
+}
+
+.pagamento-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagamento-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ff8a00;
+}
+
+.pagamento-opcoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pagamento-opcao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #ffd199;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444444;
+  cursor: pointer;
+}
+
+.pagamento-opcao input {
+  accent-color: #ff8a00;
+}
+
+.carrinho-resumo {
+  background: #ffffff;
+  border: 1px solid #f3dcc0;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.resumo-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #444444;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cardapio-acoes {
+  padding-top: 12px;
+}
