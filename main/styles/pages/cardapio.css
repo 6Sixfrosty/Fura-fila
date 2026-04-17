@@ -94,8 +94,8 @@
 
 @media (max-width: 768px) {
   .qty-btn {
-    width: 20px;
-    height: 20px;
+    width: 33px;
+    height: 33px;
     cursor: pointer;
     border-radius: 10px;
     border: none;
