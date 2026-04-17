@@ -91,11 +91,14 @@
   font-weight: 700;
 }
 
-.qty-btn {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  border: none;
-}
+
+@media (max-width: 768px) {
+  .qty-btn {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+  }
+} 
 
