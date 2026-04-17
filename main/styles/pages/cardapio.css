@@ -90,3 +90,9 @@
   font-size: 15px;
   font-weight: 700;
 }
+
+.btn-menor, .btn-maior{
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
